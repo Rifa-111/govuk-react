@@ -68,7 +68,13 @@ const StyledHyperLink = styled('a')<TabOwnProps>(
 
 const Tab: TabType = ({ selected = false, ...props }: TabOwnProps) => (
   <StyledListItem>
-    <StyledHyperLink selected={selected} {...props} />
+    <StyledHyperLink
+      role="tab"
+      aria-selected={selected}
+      tabIndex={selected ? 0 : -1}
+      selected={selected}
+      {...props}
+    />
   </StyledListItem>
 );
 
