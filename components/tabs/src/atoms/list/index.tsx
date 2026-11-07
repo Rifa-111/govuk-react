@@ -36,8 +36,8 @@ const TabList: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({ onKeyDown, 
     onKeyDown?.(event);
     if (event.defaultPrevented) return;
 
-    const target = event.target as HTMLElement;
-    if (target.getAttribute('role') !== 'tab') return;
+    const target = (event.target as HTMLElement).closest<HTMLElement>('[role="tab"]');
+    if (!target || !event.currentTarget.contains(target)) return;
 
     const tabs = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('[role="tab"]'));
     const currentIndex = tabs.indexOf(target);
